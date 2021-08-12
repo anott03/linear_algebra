@@ -6,6 +6,11 @@ fn main() {
         Ok(proj) => println!("final result: {:?}", proj),
         Err(err) => println!("Error: {}", err),
     }
+
+    match vector_subtraction(&vec![1, 2, 3], &vec![0, 1, 2]) {
+        Ok(vec) => println!("difference: {:?}", vec),
+        Err(err) => println!("Error: {}", err),
+    }
 }
 
 fn dot_product(a: &Vec<i32>, b: &Vec<i32>) -> Result<i32, String> {
@@ -61,4 +66,17 @@ fn vector_addition(v: &Vec<i32>, w: &Vec<i32>) -> Result<Vec<i32>, String> {
     }
 
     return Ok(result);
+}
+
+fn vector_subtraction(v: &Vec<i32>, w: &Vec<i32>) -> Result<Vec<i32>, String> {
+    if v.len() != w.len() {
+        return Err(String::from("Vectors must be the same length to compute sum"));
+    }
+
+    let mut _w: Vec<i32> = Vec::new();
+    for i in 0..w.len() {
+        _w.push(w[i] * -1);
+    }
+
+    return vector_addition(v, &_w)
 }
