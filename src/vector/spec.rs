@@ -53,4 +53,16 @@ mod tests {
         let basis = vec![vec![1, 1, 1], vec![1, 1, 0]];
         assert!(vector::projection_onto_basis(&v, &basis).is_err());
     }
+
+    #[test]
+    fn check_orthogonal_basis_true() {
+        let basis = vec![vec![1, 1, 1], vec![1, -1, 0]];
+        assert_eq!(vector::check_orthogonal_basis(&basis), true);
+    }
+
+    #[test]
+    fn check_orthogonal_basis_false() {
+        let basis = vec![vec![1, 1, 1], vec![1, 1, 0]];
+        assert_eq!(vector::check_orthogonal_basis(&basis), false);
+    }
 }
