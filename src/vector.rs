@@ -32,6 +32,16 @@ pub mod vector {
     pub fn projection_onto_basis(v: &Vec<i32>, basis: &Vec<Vec<i32>>) -> Result<Vec<i32>, String> {
         let mut result: Vec<i32> = vec![0, 0, 0];
 
+        for i in 0..basis.len() {
+            for j in 0..basis.len() {
+                if i != j {
+                    if dot_product(&basis[i], &basis[j]).unwrap() != 0 {
+                        return Err(String::from("projection requires an orthogonal basis"));
+                    }
+                }
+            }
+        }
+
         for w in basis {
             let p = projection(v, w).unwrap();
             println!("intermediate: {:?}", p);
@@ -95,23 +105,33 @@ mod tests {
         let v: Vec<i32> = vec![1, -1, 1];
         let w: Vec<i32> = vec![1, 1, 1];
 
-        let correct_projection = vec![];
-        let calculated_projection = vector::prjection(&v, &w).unwrap();
+        let correct_projection: Vec<i32> = vec![2/3, 2/3, 2/3];
+        let calculated_projection = vector::projection(&v, &w).unwrap();
 
         assert_eq!(correct_projection, calculated_projection);
     }
 
     #[test]
     fn projection_failure() {
+        let v: Vec<i32> = vec![3, 1, 2, 4];
+        let w: Vec<i32> = vec![1, 2, 3];
 
+        assert!(vector::dot_product(&v, &w).is_err());
     }
 
     #[test]
     fn projection_basis_success() {
+        let v = vec![3, 1, 2];
+        let basis = vec![vec![1, 1, 1], vec![1, -1, 0]];
 
+        let result = vector::projection_onto_basis(&v, &basis).unwrap();
+        assert_eq!(result, v);
     }
 
     #[test]
-    fn projection_basis_failure() {
+    fn projection_basis_not_orthogonal() {
+        let v = vec![3, 1, 2];
+        let basis = vec![vec![1, 1, 1], vec![1, 1, 0]];
+        assert!(vector::projection_onto_basis(&v, &basis).is_err());
     }
 }
