@@ -85,4 +85,19 @@ pub mod vector {
         }
         return true;
     }
+
+    pub fn linear_regression(_x: &Vec<i32>, _y: &Vec<i32>) {
+        let mut x = (*_x).clone();
+        let mut y = (*_y).clone();
+
+        let mut x_avg = 0;
+        for i in &x { x_avg += i; }
+        x_avg /= (x.len() as i32);
+        for i in 0..x.len() { x[i] -= x_avg; }
+
+        let mut y_avg = 0;
+        for i in &y { y_avg += i; }
+        y_avg /= (y.len() as i32);
+        for i in 0..y.len() { y[i] -= y_avg; }
+    }
 }
