@@ -1,4 +1,5 @@
 mod vector;
+mod fraction;
 
 use crate::vector::vector::*;
 
