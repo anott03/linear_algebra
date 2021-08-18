@@ -30,10 +30,29 @@ pub mod fraction {
         }
     }
 
+    pub fn greatest_common_factor(a: i32, b: i32) -> i32 {
+        // variable names based off Euclidean divison equation: a = b · q + r
+        let (mut a, mut b) = if a > b {
+            (a, b)
+        } else {
+            (b, a)
+        };
+
+        while b != 0 {
+            let r = a % b;
+            a = b;
+            b = r;
+        }
+
+        return a
+    }
+
     pub fn simplify(frac: &Fraction) -> Fraction {
-        return Fraction { // placeholder so rust analyzer doesn't get mad
-            numerator: 1,
-            denominator: 1,
+        let gcd = greatest_common_factor(frac.numerator, frac.denominator);
+
+        return Fraction {
+            numerator: frac.numerator / gcd,
+            denominator: frac.denominator / gcd,
         }
     }
 }
