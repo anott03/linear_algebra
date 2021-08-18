@@ -1,6 +1,14 @@
 mod spec;
 
 pub mod vector {
+    #[allow(dead_code)]
+    // TODO: decide if this is possible...
+    // implementation such that if this is true everything is done in terms of
+    // Fractions rather than decimals. Thus all functions need to be typed so
+    // that they return _either_ Vec<i32> or Vec<Fraction> depending. It would
+    // be nice to not need to repeat too much logic though.
+    pub static USE_FRACTIONS: bool = false;
+
     pub fn dot_product(a: &Vec<i32>, b: &Vec<i32>) -> Result<i32, String> {
         if a.len() != b.len() {
             return Err(String::from("vectors must have the same length to compute dot product"));
