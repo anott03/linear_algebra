@@ -29,6 +29,7 @@ pub mod vector {
 
         let mut result: Vec<i32> = Vec::new();
 
+        // we know these dot products won't fail
         let numerator = dot_product(v, w).unwrap();
         let denominator = dot_product(w, w).unwrap();
 
