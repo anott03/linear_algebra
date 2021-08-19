@@ -100,7 +100,8 @@ pub mod fraction {
         }
     }
 
-    fn greatest_common_factor(a: i32, b: i32) -> i32 {
+    // should this be public...?
+    pub fn greatest_common_factor(a: i32, b: i32) -> i32 {
         // variable names based off Euclidean divison equation: a = b · q + r
         let (mut a, mut b) = if a > b {
             (a, b)
