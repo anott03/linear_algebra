@@ -43,6 +43,14 @@ mod tests {
     }
 
     #[test]
+    fn add3() {
+        let a = fraction::Fraction::new(1, 2);
+        let expected = fraction::Fraction::new(3, 2);
+        let actual = a + 1;
+        assert_eq!(expected, actual);
+    }
+
+    #[test]
     fn subtract1() {
         let a = fraction::Fraction::new(3, 4);
         let b = fraction::Fraction::new(1, 4);

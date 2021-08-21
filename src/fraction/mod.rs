@@ -43,10 +43,29 @@ pub mod fraction {
         }
     }
 
+    impl ops::Add<i32> for Fraction {
+        type Output = Fraction;
+        
+        fn add(self, rhs: i32) -> Fraction {
+            return Fraction {
+                numerator: self.numerator + rhs * self.denominator,
+                denominator: self.denominator
+            }
+        }
+    }
+
     impl ops::Sub for Fraction {
         type Output = Fraction;
 
         fn sub(self, rhs: Self) -> Self::Output {
+            return self + (rhs * -1);
+        }
+    }
+
+    impl ops::Sub<i32> for Fraction {
+        type Output = Fraction;
+
+        fn sub(self, rhs: i32) -> Self::Output {
             return self + (rhs * -1);
         }
     }
