@@ -1,7 +1,7 @@
 mod spec;
 
+#[allow(dead_code)]
 pub mod vector {
-    #[allow(dead_code)]
     // TODO: decide if this is possible...
     // implementation such that if this is true everything is done in terms of
     // Fractions rather than decimals. Thus all functions need to be typed so
@@ -93,6 +93,18 @@ pub mod vector {
             }
         }
         return true;
+    }
+
+    pub fn cross_product(v: &Vec<i32>, w: &Vec<i32>) -> Result<Vec<i32>, String> {
+        if v.len() != 3 || w.len() != 3 {
+            return Err(String::from("Cross product can only be computed for two 3-vectors"));
+        }
+
+        let e1 = v[1] * w[2] - v[2] * w[1];
+        let e2 = v[2] * w[0] - v[0] * w[2];
+        let e3 = v[0] * w[1] - v[1] * w[0];
+
+        return Ok(vec![e1, e2, e3]);
     }
 
     // TODO

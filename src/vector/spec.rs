@@ -65,4 +65,18 @@ mod tests {
         let basis = vec![vec![1, 1, 1], vec![1, 1, 0]];
         assert_eq!(vector::check_orthogonal_basis(&basis), false);
     }
+
+    #[test]
+    fn cross_product_failure() {
+        let v = vec![1, 2];
+        let w = vec![2, 3, 4];
+        assert!(vector::cross_product(&v, &w).is_err());
+    }
+
+    #[test]
+    fn cross_product_success() {
+        let v = vec![1, 0, 0];
+        let w = vec![0, 1, 0];
+        assert_eq!(vector::cross_product(&v, &w).unwrap(), vec![0, 0, 1]);
+    }
 }
