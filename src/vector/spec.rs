@@ -48,6 +48,14 @@ mod tests {
     }
 
     #[test]
+    fn projection_basis_success2() {
+        let v = vec![4, 7, 9];
+        let basis = vec![vec![1, 0, 0], vec![0, 1, 0], vec![0, 0, 1]];
+        let result = vector::projection_onto_basis(&v, &basis).unwrap();
+        assert_eq!(result, v);
+    }
+
+    #[test]
     fn projection_basis_not_orthogonal() {
         let v = vec![3, 1, 2];
         let basis = vec![vec![1, 1, 1], vec![1, 1, 0]];
