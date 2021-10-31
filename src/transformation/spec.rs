@@ -10,7 +10,7 @@ mod spec {
 
     #[test]
     fn rotation1() {
-        let v = vec![1, 0];
-        assert_eq!(transformation::rotate(&v, std::f64::consts::FRAC_PI_2), vec![0, 1])
+        let v: Vec<f64> = vec![1.0, 0.0];
+        assert_eq!(transformation::rotate(&v, std::f64::consts::FRAC_PI_2).unwrap(), vec![0.0, 1.0])
     }
 }

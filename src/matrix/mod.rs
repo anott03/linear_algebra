@@ -1,16 +1,17 @@
+#[allow(dead_code)]
 pub mod matrix {
-    use std::array;
+    use crate::vector::vector;
 
     #[derive(Debug)]
     pub struct Matrix {
-        pub rows: i32,
-        pub cols: i32,
-        pub data: Vec<Vec<i32>>,
+        pub rows: f64,
+        pub cols: f64,
+        pub data: Vec<Vec<f64>>,
     }
 
     impl Matrix {
-        pub fn new(n: i32, m: i32) -> Matrix {
-            let data = vec![vec![0; m as usize]; n as usize];
+        pub fn new(n: f64, m: f64) -> Matrix {
+            let data = vec![vec![0.0; m as usize]; n as usize];
             return Matrix {
                 rows: n,
                 cols: m,
@@ -18,21 +19,22 @@ pub mod matrix {
             };
         }
 
-        pub fn from(v: Vec<Vec<i32>>) -> Matrix {
+        pub fn from(v: Vec<Vec<f64>>) -> Matrix {
             return Matrix {
-                rows: v.len() as i32,
-                cols: v[0].len() as i32,
+                rows: v.len() as f64,
+                cols: v[0].len() as f64,
                 data: v,
             };
         }
 
-        pub fn vector_product(v: Vec<i32>) -> Result<Vec<i32>, String> {
-            let mut result: Vec<Vec<i32>> = Vec::new();
-            for row in data {
-                for entry in row {
-
+        pub fn vector_product(&self, v: &Vec<f64>) -> Result<Vec<f64>, String> {
+            let mut result: Vec<f64> = Vec::new();
+            for i in 0..self.data.len() {
+                for j in 0..v.len() {
+                    result = vector::add(&result, &vector::scalar_product(&self.data[i], v[j])).unwrap();
                 }
             }
+            return Ok(result);
         }
     }
 }
