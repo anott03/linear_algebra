@@ -8,7 +8,6 @@ pub mod transformation {
     // v: 2x2 vector to be rotated
     // angle: angle to rotate in radians; positive is counterclockwise
     pub fn rotate(v: &Vec<f64>, angle: f64) -> Result<Vec<f64>, String> {
-
         let m = Matrix::from(
         vec![
             vec![angle.cos(), angle.sin()],
